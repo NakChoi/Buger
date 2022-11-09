@@ -14,6 +14,13 @@ public class ProductRepository {
             new Drink(6, "코카콜라", 1000, 0, true)
     };
 
+    public Product findById(int productId) {
+        for (Product product : products) {
+            if (product.getId() == productId) return product;
+        }
+        return null;
+    }
+
     public Product[] getAllProducts(){
         return products;
     }

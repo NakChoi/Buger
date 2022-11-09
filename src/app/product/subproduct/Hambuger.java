@@ -11,6 +11,11 @@ public class Hambuger extends Product {
         this.isBurgerSet = isBurgerSet;
         this.burgerSetPrice = burgerSetPrice;
     }
+    public Hambuger(Hambuger hamburger) {
+        super(hamburger.getName(), hamburger.getPrice(), hamburger.getKcal());
+        this.isBurgerSet = hamburger.isBurgerSet();
+        this.burgerSetPrice = getBurgerSetPrice();
+    }
 
     public boolean isBurgerSet() {
         return isBurgerSet;

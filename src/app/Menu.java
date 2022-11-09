@@ -16,9 +16,9 @@ public class Menu {
         System.out.println("[🔻] 메뉴");
         System.out.println("-".repeat(60));
 
-        printHamburgers();
-        printSides();
-        printDrinks();
+        printHamburgers(true);
+        printSides(true);
+        printDrinks(true);
 
         System.out.println();
         System.out.println("🧺 (0) 장바구니");
@@ -28,44 +28,48 @@ public class Menu {
 
     }
 
-    private void printDrinks() {
+    protected void printDrinks(boolean printPrice) {
         System.out.println("🥤 음료");
         for (Product product : products){
             if (product instanceof Drink) {
-                prinEachMenu(product);
+                printEachMenu(product, printPrice);
             }
         }
 
         System.out.println();
     }
 
-    private void printSides() {
+    protected void printSides(boolean printPrice) {
         System.out.println("🍟 사이드");
         for (Product product : products){
             if (product instanceof Side) {
-                prinEachMenu(product);
+                printEachMenu(product, printPrice);
             }
         }
 
         System.out.println();
     }
 
-    private void printHamburgers() {
+    protected void printHamburgers(boolean printPrice) {
         System.out.println("🍔 햄버거");
         for (Product product : products){
             if (product instanceof Hambuger) {
-                prinEachMenu(product);
+                printEachMenu(product, printPrice);
             }
         }
 
         System.out.println();
     }
 
-    private static void prinEachMenu(Product product) {
-        System.out.printf(
-                "   (%d) %s %5dKcal %5d원\n",
-                product.getId(), product.getName(), product.getKcal(), product.getPrice()
-        );
+    private static void printEachMenu(Product product, boolean printPrice) {
+        if (printPrice) {
+            System.out.printf(
+                    "   (%d) %s %5dKcal %5d원\n",
+                    product.getId(), product.getName(), product.getKcal(), product.getPrice()
+            );
+        } else {
+            System.out.printf(" (%d) %s %5dKcal\n", product.getId(), product.getName(), product.getKcal());
+        }
     }
 
 }

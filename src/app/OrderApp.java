@@ -2,6 +2,7 @@ package app;
 
 import app.product.Product;
 import app.product.ProductRepository;
+import app.Cart;
 
 import java.util.Scanner;
 
@@ -14,12 +15,28 @@ public class OrderApp {
         ProductRepository productRepository = new ProductRepository();
         Product[] products = productRepository.getAllProducts();
         Menu menu = new Menu(products);
+        Cart cart = new Cart(productRepository, menu);
+        Order order = new Order(cart);
+
 
         System.out.printf("🍔BurgerQueen Order Service");
-        //while (true){
+
+        while (true) {
             menu.printMenu();
             String input = scanner.nextLine();
 
-        //}
+
+
+            if (input.equals("+")) {
+                order.makeOrder();
+                break;
+            } else {
+                int menuNumber = Integer.parseInt(input);
+
+                if (menuNumber == 0) cart.printCart();
+                else if (1 <= menuNumber && menuNumber <= products.length) cart.addToCart(menuNumber);
+            }
+
+        }
     }
 }

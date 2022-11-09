@@ -7,13 +7,18 @@ public class BurgurSet extends Product {
     private Side side;
     private Drink drink;
 
-    public BurgurSet(int id, String name, int price, int kcal, Hambuger hambuger, Side side, Drink drink) {
-        super(id, name, price, kcal);
+    public BurgurSet(String name, int price, int kcal, Hambuger hambuger, Side side, Drink drink) {
+        super(name, price, kcal);
         this.hambuger = hambuger;
         this.side = side;
         this.drink = drink;
     }
-
+    public BurgurSet(BurgurSet burgerSet) {
+        super(burgerSet.getName(), burgerSet.getPrice(), burgerSet.getKcal());
+        this.hambuger = new Hambuger(burgerSet.hambuger);
+        this.side = new Side(burgerSet.side);
+        this.drink = new Drink(burgerSet.drink);
+    }
     public Hambuger getHambuger(){
         return  hambuger;
     }
